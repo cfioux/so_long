@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfioux-- <marvin@d42.fr>                   +#+  +:+       +#+        */
+/*   By: cfioux-- <cfioux--@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 09:38:07 by cfioux--          #+#    #+#             */
-/*   Updated: 2026/01/05 09:38:12 by cfioux--         ###   ########.fr       */
+/*   Updated: 2026/01/12 13:20:04 by cfioux--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-# include <mlx.h>
+# include "mlx.h"
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
@@ -44,25 +44,28 @@ typedef struct s_game
 	t_img	collect;
 	t_img	exit;
 	t_img	ground;
+	t_img	boss;
+	t_img	exitMonkey;
 }	t_game;
 
-/* init */
 void	init_game(t_game *g);
 void	load_textures(t_game *g);
 
-/* map */
 void	load_map(t_game *g, char *file);
 void	check_map(t_game *g);
 
-/* render */
 void	render_map(t_game *g);
 
-/* events */
 int		key_press(int keycode, t_game *g);
 int		close_window(t_game *g);
 
-/* utils */
 void	error(char *msg);
 int		ft_strlen(char *s);
+
+char *ft_strchr(char *s, int c);
+
+void    flood_fill(t_game *g);
+
+void	ft_putchar(char *msg);
 
 #endif
