@@ -43,6 +43,7 @@ static void	move_player(t_game *g, int dx, int dy)
 	g->map[g->py][g->px] = 'P';
 	g->moves++;
 	printf("🆙 Movements : %d\n", g->moves);
+	printf("🎒 Time : %lu\n",get_time_second());
 	render_map(g);
 }
 

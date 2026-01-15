@@ -18,6 +18,7 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include <stdio.h>
+#include <sys/time.h>
 
 # define TILE 64
 
@@ -62,9 +63,11 @@ int		close_window(t_game *g);
 
 void	error(char *msg);
 int		ft_strlen(char *s);
+long int get_time_second();
 
 char *ft_strchr(char *s, int c);
 
 void    flood_fill(t_game *g);
 
 #endif
+

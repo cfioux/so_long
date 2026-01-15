@@ -18,6 +18,7 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include <stdio.h>
+#include <sys/time.h>
 
 # define TILE 64
 
@@ -39,13 +40,14 @@ typedef struct s_game
 	int		py;
 	int		collectibles;
 	int		moves;
+	int		orientation;
 	t_img	wall;
 	t_img	player;
+	t_img	player1;
 	t_img	collect;
 	t_img	exit;
 	t_img	ground;
 	t_img	boss;
-	t_img	exitMonkey;
 }	t_game;
 
 void	init_game(t_game *g);
@@ -61,11 +63,11 @@ int		close_window(t_game *g);
 
 void	error(char *msg);
 int		ft_strlen(char *s);
+long int get_time_second();
 
 char *ft_strchr(char *s, int c);
 
 void    flood_fill(t_game *g);
 
-void	ft_putchar(char *msg);
-
 #endif
+
