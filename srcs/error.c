@@ -22,13 +22,3 @@ void	error(char *msg)
 	}
 	exit(1);
 }
-
-void	ft_putchar(char *msg)
-{
-	if (msg)
-	{
-		write(1, msg, ft_strlen(msg));
-		write(1, "\n", 1);
-	}
-	exit(1);
-}

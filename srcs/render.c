@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "so_long.h"
-#include "ft_printf.h"
 
 void	load_textures(t_game *g)
 {
@@ -23,6 +22,10 @@ void	load_textures(t_game *g)
 			"textures/monkey.xpm", &g->player.w, &g->player.h);
 	if (!g->player.img)
 		error("Texture monkey.xpm not found");
+	g->player1.img = mlx_xpm_file_to_image(g->mlx,
+			"textures/monkey1.xpm", &g->player1.w, &g->player1.h);
+	if (!g->player1.img)
+		error("Texture monkey1.xpm not found");
 	g->collect.img = mlx_xpm_file_to_image(g->mlx,
 			"textures/bannana.xpm", &g->collect.w, &g->collect.h);
 	if (!g->collect.img)
@@ -39,17 +42,13 @@ void	load_textures(t_game *g)
 			"textures/boss.xpm", &g->boss.w, &g->boss.h);
 	if (!g->boss.img)
 		error("Texture boss.xpm not found");
-	g->exitMonkey.img = mlx_xpm_file_to_image(g->mlx,
-			"textures/exitMonkey.xpm", &g->exitMonkey.w, &g->exitMonkey.h);
-	if (!g->exitMonkey.img)
-		error("Texture exitMonkey.xpm not found");
 }
 
 void	render_map(t_game *g)
 {
 	int	x;
 	int	y;
-	
+
 	y = 0;
 	while (y < g->height)
 	{
@@ -67,12 +66,19 @@ void	render_map(t_game *g)
 			if (g->map[y][x] == 'E')
 				mlx_put_image_to_window(g->mlx, g->win,
 					g->exit.img, x * TILE, y * TILE);
-			if (g->px == x && g->py == y)
-    			mlx_put_image_to_window(g->mlx, g->win,
-					g->exitMonkey.img, x * TILE, y * TILE);
 			if (g->map[y][x] == 'P')
-				mlx_put_image_to_window(g->mlx, g->win,
-					g->player.img, x * TILE, y * TILE);
+			{
+				if (g->orientation == 0)
+				{
+					mlx_put_image_to_window(g->mlx, g->win,
+						g->player.img, x * TILE, y * TILE);
+				}
+				else
+				{
+					mlx_put_image_to_window(g->mlx, g->win,
+						g->player1.img, x * TILE, y * TILE);
+				}
+			}
 			if (g->map[y][x] == 'B')
 				mlx_put_image_to_window(g->mlx, g->win,
 					g->boss.img, x * TILE, y * TILE);

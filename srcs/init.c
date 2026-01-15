@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "so_long.h"
-#include "ft_printf.h"
 
 void	init_game(t_game *g)
 {
@@ -20,4 +19,5 @@ void	init_game(t_game *g)
 		error("MLX init failed");
 	g->moves = 0;
 	g->collectibles = 0;
+	g->orientation = 0;
 }

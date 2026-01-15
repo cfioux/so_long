@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "so_long.h"
-#include "ft_printf.h"
 
 static char	*read_line(int fd)
 {

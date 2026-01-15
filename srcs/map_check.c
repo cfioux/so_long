@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "so_long.h"
-#include "ft_printf.h"
 
 static void	check_chars(t_game *g, int *p, int *e)
 {
