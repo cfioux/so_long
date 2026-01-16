@@ -82,3 +82,23 @@ int	close_window(t_game *g)
 	mlx_destroy_window(g->mlx, g->win);
 	exit(0);
 }
+
+int    banana_loop(t_game *g)
+{
+    static long    last_time = 0;
+    struct timeval tv;
+    long           current_time;
+
+    gettimeofday(&tv, NULL);
+    current_time = tv.tv_sec * 1000 + tv.tv_usec / 1000;
+    
+    if (current_time - last_time < 200)
+        return (0);
+    
+    last_time = current_time;
+    g->banana_frame++;
+    if (g->banana_frame == 3)
+        g->banana_frame = 0;
+    render_map(g);
+    return (0);
+}
