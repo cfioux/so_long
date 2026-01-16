@@ -6,4 +6,4 @@
 
 ## ⭐ Visualisation
 
-![Basic Image](assets/screen1.png)
+![Basic Image](assets/so_monkey.gif)
