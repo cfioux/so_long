@@ -26,10 +26,26 @@ void	load_textures(t_game *g)
 			"textures/monkey1.xpm", &g->player1.w, &g->player1.h);
 	if (!g->player1.img)
 		error("Texture monkey1.xpm not found");
+	/*
 	g->collect.img = mlx_xpm_file_to_image(g->mlx,
-			"textures/bannana.xpm", &g->collect.w, &g->collect.h);
+			"textures/banana.xpm", &g->collect.w, &g->collect.h);
 	if (!g->collect.img)
-		error("Texture bannana.xpm not found");
+		error("Texture banana.xpm not found");
+	*/
+	g->banana[0].img = mlx_xpm_file_to_image(g->mlx,
+    	"textures/banana.xpm", &g->banana[0].w, &g->banana[0].h);
+	if (!g->banana[0].img)
+		error("Texture banana.xpm not found");
+	g->banana[1].img = mlx_xpm_file_to_image(g->mlx,
+    	"textures/banana1.xpm", &g->banana[1].w, &g->banana[1].h);
+	if (!g->banana[1].img)
+		error("Texture banana1.xpm not found");
+	g->banana[2].img = mlx_xpm_file_to_image(g->mlx,
+    	"textures/banana2.xpm", &g->banana[2].w, &g->banana[2].h);
+	if (!g->banana[2].img)
+		error("Texture banana2.xpm not found");
+	g->banana_frame = 0;
+
 	g->exit.img = mlx_xpm_file_to_image(g->mlx,
 			"textures/exit.xpm", &g->exit.w, &g->exit.h);
 	if (!g->exit.img)
@@ -61,8 +77,16 @@ void	render_map(t_game *g)
 				mlx_put_image_to_window(g->mlx, g->win,
 					g->wall.img, x * TILE, y * TILE);
 			if (g->map[y][x] == 'C')
+			{
+				mlx_put_image_to_window(g->mlx, g->win,
+				g->banana[g->banana_frame].img,
+				x * TILE, y * TILE);
+			}
+			/*
+			if (g->map[y][x] == 'C')
 				mlx_put_image_to_window(g->mlx, g->win,
 					g->collect.img, x * TILE, y * TILE);
+			*/
 			if (g->map[y][x] == 'E')
 				mlx_put_image_to_window(g->mlx, g->win,
 					g->exit.img, x * TILE, y * TILE);

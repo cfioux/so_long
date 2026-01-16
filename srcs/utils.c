@@ -41,13 +41,3 @@ char	*ft_strchr(char *s, int c)
 		return (&s[i]);
 	return (NULL);
 }
-
-long int get_time_second()
-{
-	struct timeval	tv;
-	long   int 		time;
-
-	gettimeofday(&tv, NULL);
-	time = tv.tv_sec;
-	return (time);
-}

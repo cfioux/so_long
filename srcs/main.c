@@ -28,5 +28,6 @@ int	main(int ac, char **av)
 	render_map(&g);
 	mlx_key_hook(g.win, key_press, &g);
 	mlx_hook(g.win, 17, 0, close_window, &g);
+	mlx_loop_hook(g.mlx, banana_loop, &g);
 	mlx_loop(g.mlx);
 }
