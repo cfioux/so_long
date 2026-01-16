@@ -44,6 +44,14 @@ void	load_textures(t_game *g)
     	"textures/banana2.xpm", &g->banana[2].w, &g->banana[2].h);
 	if (!g->banana[2].img)
 		error("Texture banana2.xpm not found");
+	g->banana[3].img = mlx_xpm_file_to_image(g->mlx,
+    	"textures/banana3.xpm", &g->banana[3].w, &g->banana[3].h);
+	if (!g->banana[3].img)
+		error("Texture banana3.xpm not found");
+	g->banana[4].img = mlx_xpm_file_to_image(g->mlx,
+    	"textures/banana4.xpm", &g->banana[4].w, &g->banana[4].h);
+	if (!g->banana[4].img)
+		error("Texture banana4.xpm not found");
 	g->banana_frame = 0;
 
 	g->exit.img = mlx_xpm_file_to_image(g->mlx,

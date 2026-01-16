@@ -42,7 +42,7 @@ typedef struct s_game
 	int		collectibles;
 	int		moves;
 	int		orientation;
-	t_img	banana[3];
+	t_img	banana[5];
 	t_img	wall;
 	t_img	player;
 	t_img	player1;
