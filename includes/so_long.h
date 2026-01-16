@@ -6,7 +6,7 @@
 /*   By: cfioux-- <cfioux--@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 09:38:07 by cfioux--          #+#    #+#             */
-/*   Updated: 2026/01/12 13:20:04 by cfioux--         ###   ########.fr       */
+/*   Updated: 2026/01/16 10:45:46 by cfioux--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ typedef struct s_game
 	void	*mlx;
 	void	*win;
 	char	**map;
+	int		banana_frame;
 	int		width;
 	int		height;
 	int		px;
@@ -41,6 +42,7 @@ typedef struct s_game
 	int		collectibles;
 	int		moves;
 	int		orientation;
+	t_img	banana[3];
 	t_img	wall;
 	t_img	player;
 	t_img	player1;
@@ -63,11 +65,11 @@ int		close_window(t_game *g);
 
 void	error(char *msg);
 int		ft_strlen(char *s);
-long int get_time_second();
 
 char *ft_strchr(char *s, int c);
 
 void    flood_fill(t_game *g);
 
-#endif
+int    banana_loop(t_game *g);
 
+#endif
