@@ -77,4 +77,9 @@ void    flood_fill(t_game *g);
 
 int    banana_loop(t_game *g);
 
+void	error_with_cleanup(t_game *g, char *msg);
+void	free_map(char **map, int height);
+
+void	*ft_memcpy(void *dest, const void *src, size_t n);
+
 #endif
