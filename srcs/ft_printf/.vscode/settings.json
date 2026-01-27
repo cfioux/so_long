@@ -1,9 +1,0 @@
-{
-	"files.associations": {
-		"chrono": "c",
-		"random": "c",
-		"limits": "c",
-		"unistd.h": "c",
-		"stdarg.h": "c"
-	}
-}
