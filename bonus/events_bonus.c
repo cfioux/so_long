@@ -69,6 +69,35 @@ int	key_press(int keycode, t_game *g)
 	return (0);
 }
 
+static void	destroy_images(t_game *g)
+{
+	int	i;
+
+	if (g->wall.img)
+		mlx_destroy_image(g->mlx, g->wall.img);
+	if (g->exit.img)
+		mlx_destroy_image(g->mlx, g->exit.img);
+	if (g->exitMonkey.img)
+		mlx_destroy_image(g->mlx, g->exitMonkey.img);
+	if (g->exitMonkey1.img)
+		mlx_destroy_image(g->mlx, g->exitMonkey1.img);
+	if (g->ground.img)
+		mlx_destroy_image(g->mlx, g->ground.img);
+	if (g->player.img)
+		mlx_destroy_image(g->mlx, g->player.img);
+	if (g->player1.img)
+		mlx_destroy_image(g->mlx, g->player1.img);
+	if (g->boss.img)
+		mlx_destroy_image(g->mlx, g->boss.img);
+	i = 0;
+	while (i < 5)
+	{
+		if (g->banana[i].img)
+			mlx_destroy_image(g->mlx, g->banana[i].img);
+		i++;
+	}
+}
+
 int	close_window(t_game *g)
 {
 	int	i;
@@ -80,24 +109,30 @@ int	close_window(t_game *g)
 		i++;
 	}
 	free(g->map);
-	mlx_destroy_window(g->mlx, g->win);
+	destroy_images(g);
+	if (g->win)
+		mlx_destroy_window(g->mlx, g->win);
+	if (g->mlx)
+	{
+		mlx_destroy_display(g->mlx);
+		free(g->mlx);
+	}
 	exit(0);
 }
 
 int	banana_loop(t_game *g)
 {
-	static long		last_time;
+	static long		last_time = 0;
 	struct timeval	tv;
 	long			current_time;
 
-	last_time = 0;
 	gettimeofday(&tv, NULL);
-	current_time = tv.tv_sec * 1000 + tv.tv_usec / 1000000;
-	//if (current_time - last_time < 100)
-	//	return (0);
+	current_time = tv.tv_sec * 1000 + tv.tv_usec / 1000;
+	if (current_time - last_time < 200)
+		return (0);
 	last_time = current_time;
 	g->banana_frame++;
-	if (g->banana_frame == 5)
+	if (g->banana_frame >= 5)
 		g->banana_frame = 0;
 	render_map(g);
 	return (0);
