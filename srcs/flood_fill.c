@@ -12,6 +12,8 @@
 
 #include "../so_long.h"
 
+#include "../so_long.h"
+
 static void	free_copy_partial(char **copy, int lines_allocated)
 {
 	int	i;
@@ -67,7 +69,7 @@ static void	fill(char **map, int x, int y)
 	fill(map, x, y - 1);
 }
 
-static void	check_flood(char **map, t_game *g)
+static int	check_flood(char **map, t_game *g)
 {
 	int	y;
 	int	x;
@@ -79,14 +81,12 @@ static void	check_flood(char **map, t_game *g)
 		while (x < g->width)
 		{
 			if (map[y][x] == 'C' || map[y][x] == 'E')
-			{
-				free_map(map, g->height);
-				error_with_cleanup(g, "Map no playable (flood fill)");
-			}
+				return (0);
 			x++;
 		}
 		y++;
 	}
+	return (1);
 }
 
 static void	free_copy(char **map, int height)
@@ -108,6 +108,10 @@ void	flood_fill(t_game *g)
 
 	map_copy = copy_map(g);
 	fill(map_copy, g->px, g->py);
-	check_flood(map_copy, g);
+	if (!check_flood(map_copy, g))
+	{
+		free_copy(map_copy, g->height);
+		error_with_cleanup(g, "Map no playable (flood fill)");
+	}
 	free_copy(map_copy, g->height);
 }
