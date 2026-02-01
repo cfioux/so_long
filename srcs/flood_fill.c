@@ -12,8 +12,6 @@
 
 #include "../so_long.h"
 
-#include "../so_long.h"
-
 static void	free_copy_partial(char **copy, int lines_allocated)
 {
 	int	i;
