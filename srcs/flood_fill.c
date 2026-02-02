@@ -6,7 +6,7 @@
 /*   By: cfioux-- <cfioux--@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 10:40:52 by cfioux--          #+#    #+#             */
-/*   Updated: 2026/01/27 15:34:54 by cfioux--         ###   ########.fr       */
+/*   Updated: 2026/02/02 13:19:24 by cfioux--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ static void	fill(char **map, int x, int y)
 	fill(map, x, y - 1);
 }
 
-static int	check_flood(char **map, t_game *g)
+static void	check_flood(char **map, t_game *g)
 {
 	int	y;
 	int	x;
@@ -79,12 +79,14 @@ static int	check_flood(char **map, t_game *g)
 		while (x < g->width)
 		{
 			if (map[y][x] == 'C' || map[y][x] == 'E')
-				return (0);
+			{
+				free_map(map, g->height);
+				error_with_cleanup(g, "Map no playable (flood fill)");
+			}
 			x++;
 		}
 		y++;
 	}
-	return (1);
 }
 
 static void	free_copy(char **map, int height)
@@ -106,10 +108,6 @@ void	flood_fill(t_game *g)
 
 	map_copy = copy_map(g);
 	fill(map_copy, g->px, g->py);
-	if (!check_flood(map_copy, g))
-	{
-		free_copy(map_copy, g->height);
-		error_with_cleanup(g, "Map no playable (flood fill)");
-	}
+	check_flood(map_copy, g);
 	free_copy(map_copy, g->height);
 }

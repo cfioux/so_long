@@ -19,6 +19,7 @@ void	init_game(t_game *g)
 		error("MLX init failed");
 	g->moves = 0;
 	g->collectibles = 0;
+	g ->height = 0;
 	g->map = NULL;
 	g->win = NULL;
 	g->wall.img = NULL;

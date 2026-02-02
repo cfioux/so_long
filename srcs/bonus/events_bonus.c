@@ -128,7 +128,7 @@ int	banana_loop(t_game *g)
 
 	gettimeofday(&tv, NULL);
 	current_time = tv.tv_sec * 1000 + tv.tv_usec / 1000;
-	if (current_time - last_time < 200)
+	if (current_time - last_time < 150)
 		return (0);
 	last_time = current_time;
 	g->banana_frame++;

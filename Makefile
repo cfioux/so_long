@@ -6,10 +6,9 @@
 #    By: cfioux-- <cfioux--@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/05 09:44:33 by cfioux--          #+#    #+#              #
-#    Updated: 2026/01/05 09:44:33 by cfioux--         ###   ########.fr        #
+#    Updated: 2026/02/02 14:20:34 by cfioux--         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-
 
 NAME = so_long
 NAME_BONUS = so_long_bonus
@@ -30,17 +29,23 @@ SRCS = srcs/error.c \
 	srcs/map.c \
 	srcs/map_check.c \
 	srcs/render.c \
-	srcs/utils.c
+	srcs/utils.c \
+	srcs/ft_printf/ft_printf.c \
+	srcs/ft_printf/ft_printf_utils.c \
+	srcs/ft_printf/ft_puthex_count.c
 
-SRCS_BONUS = bonus/error_bonus.c \
-		bonus/events_bonus.c \
-		bonus/flood_fill_bonus.c \
-		bonus/init_bonus.c \
-		bonus/main_bonus.c \
-		bonus/map_bonus.c \
-		bonus/map_check_bonus.c \
-		bonus/render_bonus.c \
-		bonus/utils_bonus.c
+SRCS_BONUS = srcs/bonus/error_bonus.c \
+		srcs/bonus/events_bonus.c \
+		srcs/bonus/flood_fill_bonus.c \
+		srcs/bonus/init_bonus.c \
+		srcs/bonus/main_bonus.c \
+		srcs/bonus/map_bonus.c \
+		srcs/bonus/map_check_bonus.c \
+		srcs/bonus/render_bonus.c \
+		srcs/bonus/utils_bonus.c \
+		srcs/ft_printf/ft_printf.c \
+		srcs/ft_printf/ft_printf_utils.c \
+		srcs/ft_printf/ft_puthex_count.c
 
 OBJS = $(SRCS:.c=.o)
 OBJS_BONUS = $(SRCS_BONUS:.c=.o)
@@ -51,13 +56,13 @@ LIBS = -L$(MLX_DIR) -lmlx -lXext -lX11 -lm
 
 all: $(NAME)
 
-	@echo "$(IRed)                  __                         "
-	@echo "$(IBlue)  __________$(IRed)     |  |   ____   ____    ____  "
-	@echo "$(IBlue) /  ___/  _ \ $(IRed)   |  |  /  _ \ /    \  / ___\ "
-	@echo "$(IBlue) \___ (  <_> )$(IRed)   |  |_(  <_> )   |  \/ /_/  >"
-	@echo "$(IBlue) \___ (  <_> )$(IRed)   |  |_(  <_> )   |  \/ /_/  >"
-	@echo "$(IBlue)/____  >____/$(White)____$(IRed)|____/\____/|___|  /\___  / "
-	@echo "$(IBlue)     \/    $(White)/_____/$(IRed)                \//_____/  "
+	@echo "$(IRed)                  $(White)__                         "
+	@echo "$(IBlue)  __________$(White)     |  |   ____  $(IRed) ____    ____  "
+	@echo "$(IBlue) /  ___/  _ \ $(White)   |  |  /  _ \ $(IRed)/    \  / ___\ "
+	@echo "$(IBlue) \___ (  <_> )$(White)   |  | (  <_> $(IRed))   |  \/ /_/  >"
+	@echo "$(IBlue) \___ (  <_> )$(White)   |  |_(  <_> $(IRed))   |  \/ /_/  >"
+	@echo "$(IBlue)/____  >____/$(White)____|____/\____/$(IRed)|___|  /\___  / "
+	@echo "$(IBlue)     \/    $(White)/_____/           $(IRed)     \//_____/  "
 
 bonus: $(NAME_BONUS)
 	@echo "$(IRed)                  __                           "

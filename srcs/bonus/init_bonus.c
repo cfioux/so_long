@@ -21,6 +21,7 @@ void	init_game(t_game *g)
 	g->collectibles = 0;
 	g->orientation = 0;
 	g->potassium_display = 0;
+	g->height = 0;
 	g->map = NULL;
 	g->win = NULL;
 	g->wall.img = NULL;

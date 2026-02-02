@@ -12,8 +12,6 @@
 
 #include "../so_long.h"
 
-#include "../so_long.h"
-
 char	*append_char(char *line, char c, int len);
 
 
