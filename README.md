@@ -1,27 +1,26 @@
 # 🐒 SO_LONG - (monkey edition)
 
----
-
 *This project is a small 2D game. Its purpose is to have you work with textures, sprites, and other basic gameplay elements.*
+
 
 ## ⭐ Visualisation
 
-![Basic Image](assets/so_long.gif)
+![Gif Visualisation 1](assets/so_long.gif)
 
 ## 🔥 Usage
 
-Clone my repo :
-```
+#### Clone my repo :
+```bash
 git clone https://github.com/cfioux/so_long.git
 ```
-Clone the MiniLibx in my repo:
-```
+#### Clone the MiniLibx in my repo:
+```bash
 git clone https://github.com/42Paris/minilibx-linux minilibx-linux
 ```
 
-And you can `make` or `make bonus`
+> Now, you can `make` or `make bonus`
 
-![alt text](assets/image.png)
+![Compilation message](assets/image.png)
 
 ## 🤸🏽 Movement
 
