@@ -20,7 +20,7 @@ void	move_player2(t_game *g, char dest, int new_y, int new_x)
 	}
 	if (dest == 'E' && g->collectibles == 0)
 	{
-		printf("🎉 Victory in %d movements!\n", g->moves + 1);
+		ft_printf("🎉 Victory in %d movements!\n", g->moves + 1);
 		close_window(g);
 	}
 }
@@ -44,7 +44,7 @@ static void	move_player(t_game *g, int dx, int dy)
 	if (g->map[g->py][g->px] != 'E')
 		g->map[g->py][g->px] = 'P';
 	g->moves++;
-	printf("🆙 Movements : %d\n", g->moves);
+	ft_printf("🆙 Movements : %d\n", g->moves);
 	render_map(g);
 }
 
