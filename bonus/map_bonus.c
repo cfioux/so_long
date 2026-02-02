@@ -10,34 +10,47 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../so_long_bonus.h"
+#include "../so_long.h"
+
+char	*append_char(char *line, char c, int len);
+
 
 static char	*read_line(int fd)
 {
 	char	*line;
 	char	c;
-	int		i;
+	int		len;
 	int		ret;
 
-	line = malloc(1000);
-	if (!line)
-		return (NULL);
-	i = 0;
-	while ((ret = read(fd, &c, 1)) == 1)
+	line = NULL;
+	len = 0;
+	ret = read(fd, &c, 1);
+	while (ret > 0 && c != '\n')
 	{
-		if (c == '\n')
-			break ;
-		if (i >= 999)
-			error("Ligne trop longue");
-		line[i++] = c;
+		line = append_char(line, c, len);
+		len++;
+		ret = read(fd, &c, 1);
 	}
-	line[i] = '\0';
-	if (i == 0 && ret == 0)
-	{
-		free(line);
+	if (len == 0 && ret <= 0)
 		return (NULL);
-	}
 	return (line);
+}
+
+char	*append_char(char *line, char c, int len)
+{
+	char	*tmp;
+
+	tmp = malloc(len + 2);
+	if (!tmp)
+		error("Malloc failed");
+	if (line)
+	{
+		ft_memcpy(tmp, line, len);
+		free(line);
+	}
+	tmp[len] = c;
+	tmp[len + 1] = '\0';
+	return (tmp);
 }
 
 static int	count_lines(char *file)
@@ -50,10 +63,12 @@ static int	count_lines(char *file)
 	if (fd < 0)
 		error("Map not found");
 	count = 0;
-	while ((line = read_line(fd)))
+	line = read_line(fd);
+	while (line)
 	{
 		free(line);
 		count++;
+		line = read_line(fd);
 	}
 	close(fd);
 	if (count == 0)
