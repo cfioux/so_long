@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   so_long_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cfioux-- <cfioux--@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 09:38:07 by cfioux--          #+#    #+#             */
-/*   Updated: 2026/01/21 13:16:04 by cfioux--         ###   ########.fr       */
+/*   Updated: 2026/02/02 15:51:09 by cfioux--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,11 @@ typedef struct s_game
 	t_img	ground;
 	t_img	boss;
 }	t_game;
+
+int		ft_printf(const char *format, ...);
+int		ft_puthex_count(unsigned long n, int upper);
+int		ft_putchar_count(char c);
+int		ft_putstr_count(char *s);
 
 void	init_game(t_game *g);
 void	load_textures(t_game *g);
