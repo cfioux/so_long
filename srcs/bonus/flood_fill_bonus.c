@@ -6,24 +6,11 @@
 /*   By: cfioux-- <cfioux--@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 10:40:52 by cfioux--          #+#    #+#             */
-/*   Updated: 2026/02/03 11:15:06 by cfioux--         ###   ########.fr       */
+/*   Updated: 2026/02/03 11:33:13 by cfioux--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long_bonus.h"
-
-static void	free_copy_partial(char **copy, int lines_allocated)
-{
-	int	i;
-
-	i = 0;
-	while (i < lines_allocated)
-	{
-		free(copy[i]);
-		i++;
-	}
-	free(copy);
-}
 
 static char	*allocate_and_copy_line(t_game *g, char **copy, int i)
 {

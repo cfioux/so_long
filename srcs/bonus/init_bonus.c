@@ -19,6 +19,8 @@ void	init_game(t_game *g)
 		error("MLX init failed");
 	g->moves = 0;
 	g->collectibles = 0;
+	g->count_exit = 0;
+	g->count_player = 0;
 	g->orientation = 0;
 	g->potassium_display = 0;
 	g->height = 0;

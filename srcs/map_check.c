@@ -12,7 +12,7 @@
 
 #include "../so_long.h"
 
-static void	process_char(t_game *g, int y, int x, int *p, int *e)
+static void	process_char(t_game *g, int y, int x)
 {
 	if (!ft_strchr("01CEP", g->map[y][x]))
 		error_with_cleanup(g, "charactor invalide in the map");
@@ -20,15 +20,15 @@ static void	process_char(t_game *g, int y, int x, int *p, int *e)
 	{
 		g->px = x;
 		g->py = y;
-		(*p)++;
+		g->count_player++;
 	}
 	if (g->map[y][x] == 'C')
 		g->collectibles++;
 	if (g->map[y][x] == 'E')
-		(*e)++;
+		g->count_exit++;
 }
 
-static void	check_chars(t_game *g, int *p, int *e)
+static void	check_chars(t_game *g)
 {
 	int	y;
 	int	x;
@@ -39,7 +39,7 @@ static void	check_chars(t_game *g, int *p, int *e)
 		x = 0;
 		while (x < g->width)
 		{
-			process_char(g, y, x, p, e);
+			process_char(g, y, x);
 			x++;
 		}
 		y++;
@@ -83,17 +83,14 @@ static void	check_rectangle(t_game *g)
 
 void	check_map(t_game *g)
 {
-	int	player;
-	int	exit;
-
-	player = 0;
-	exit = 0;
+	g->count_player = 0;
+	g->count_exit = 0;
 	check_rectangle(g);
 	check_walls(g);
-	check_chars(g, &player, &exit);
-	if (player != 1)
+	check_chars(g);
+	if (g->count_player != 1)
 		error_with_cleanup(g, "no player detected");
-	if (exit < 1)
+	if (g->count_exit < 1)
 		error_with_cleanup(g, "no exit detected");
 	if (g->collectibles < 1)
 		error_with_cleanup(g, "no coin detected");

@@ -6,7 +6,7 @@
 /*   By: cfioux-- <cfioux--@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 09:38:07 by cfioux--          #+#    #+#             */
-/*   Updated: 2026/02/03 11:05:32 by cfioux--         ###   ########.fr       */
+/*   Updated: 2026/02/03 11:36:15 by cfioux--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ typedef struct s_game
 	int		px;
 	int		py;
 	int		collectibles;
+	int 	count_player;
+	int 	count_exit;
 	int		moves;
 	int		orientation;
 	long    potassium_display;
@@ -68,12 +70,13 @@ void	render_map(t_game *g);
 
 int		key_press(int keycode, t_game *g);
 int		close_window(t_game *g);
-
+void	destroy_images(t_game *g);
 void	error(char *msg);
 void	error_with_cleanup(t_game *g, char *msg);
 void	free_map(char **map, int height);
 int		ft_strlen(char *s);
 void	*ft_memcpy(void *dest, const void *src, size_t n);
+void	free_copy_partial(char **copy, int lines_allocated);
 
 char	*ft_strchr(char *s, int c);
 

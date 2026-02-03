@@ -69,22 +69,6 @@ int	key_press(int keycode, t_game *g)
 	return (0);
 }
 
-static void	destroy_images(t_game *g)
-{
-	if (g->wall.img)
-		mlx_destroy_image(g->mlx, g->wall.img);
-	if (g->exit.img)
-		mlx_destroy_image(g->mlx, g->exit.img);
-	if (g->exitMonkey.img)
-		mlx_destroy_image(g->mlx, g->exitMonkey.img);
-	if (g->ground.img)
-		mlx_destroy_image(g->mlx, g->ground.img);
-	if (g->player.img)
-		mlx_destroy_image(g->mlx, g->player.img);
-	if (g->banana.img)
-		mlx_destroy_image(g->mlx, g->banana.img);
-}
-
 int	close_window(t_game *g)
 {
 	int	i;

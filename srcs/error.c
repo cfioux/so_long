@@ -39,7 +39,7 @@ void	free_map(char **map, int height)
 	free(map);
 }
 
-static void	destroy_images(t_game *g)
+void	destroy_images(t_game *g)
 {
 	if (g->wall.img)
 		mlx_destroy_image(g->mlx, g->wall.img);
@@ -74,4 +74,17 @@ void	error_with_cleanup(t_game *g, char *msg)
 		free(g->mlx);
 	}
 	exit(1);
+}
+
+void	free_copy_partial(char **copy, int lines_allocated)
+{
+	int	i;
+
+	i = 0;
+	while (i < lines_allocated)
+	{
+		free(copy[i]);
+		i++;
+	}
+	free(copy);
 }
