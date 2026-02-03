@@ -6,7 +6,7 @@
 /*   By: cfioux-- <cfioux--@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 09:38:07 by cfioux--          #+#    #+#             */
-/*   Updated: 2026/02/02 15:51:09 by cfioux--         ###   ########.fr       */
+/*   Updated: 2026/02/03 11:05:40 by cfioux--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ int    banana_loop(t_game *g);
 
 void	error_with_cleanup(t_game *g, char *msg);
 void	free_map(char **map, int height);
+void	*ft_memcpy(void *dest, const void *src, size_t n);
 
 void	*ft_memcpy(void *dest, const void *src, size_t n);
 

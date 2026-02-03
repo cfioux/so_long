@@ -12,6 +12,22 @@
 
 #include "../so_long_bonus.h"
 
+static void	process_char(t_game *g, int y, int x, int *p, int *e)
+{
+	if (!ft_strchr("01CEP", g->map[y][x]))
+		error_with_cleanup(g, "charactor invalide in the map");
+	if (g->map[y][x] == 'P')
+	{
+		g->px = x;
+		g->py = y;
+		(*p)++;
+	}
+	if (g->map[y][x] == 'C')
+		g->collectibles++;
+	if (g->map[y][x] == 'E')
+		(*e)++;
+}
+
 static void	check_chars(t_game *g, int *p, int *e)
 {
 	int	y;
@@ -23,18 +39,7 @@ static void	check_chars(t_game *g, int *p, int *e)
 		x = 0;
 		while (x < g->width)
 		{
-			if (!ft_strchr("01CEPB", g->map[y][x]))
-				error("charactor invalide in the map");
-			if (g->map[y][x] == 'P')
-			{
-				g->px = x;
-				g->py = y;
-				(*p)++;
-			}
-			if (g->map[y][x] == 'C')
-				g->collectibles++;
-			if (g->map[y][x] == 'E')
-				(*e)++;
+			process_char(g, y, x, p, e);
 			x++;
 		}
 		y++;
@@ -50,7 +55,7 @@ static void	check_walls(t_game *g)
 	{
 		if (g->map[0][i] != '1'
 			|| g->map[g->height - 1][i] != '1')
-			error("map not closed by walls");
+			error_with_cleanup(g, "map not closed by walls");
 		i++;
 	}
 	i = 0;
@@ -58,7 +63,7 @@ static void	check_walls(t_game *g)
 	{
 		if (g->map[i][0] != '1'
 			|| g->map[i][g->width - 1] != '1')
-			error("map not closed by walls");
+			error_with_cleanup(g, "map not closed by walls");
 		i++;
 	}
 }
@@ -71,7 +76,7 @@ static void	check_rectangle(t_game *g)
 	while (i < g->height)
 	{
 		if ((int)ft_strlen(g->map[i]) != g->width)
-			error("map is not a rectangle");
+			error_with_cleanup(g, "map is not a rectangle");
 		i++;
 	}
 }
@@ -87,9 +92,10 @@ void	check_map(t_game *g)
 	check_walls(g);
 	check_chars(g, &player, &exit);
 	if (player != 1)
-		error("no player detected");
+		error_with_cleanup(g, "no player detected");
 	if (exit < 1)
-		error("no exit detected");
+		error_with_cleanup(g, "no exit detected");
 	if (g->collectibles < 1)
-		error("no coin detected");
+		error_with_cleanup(g, "no coin detected");
 }
+

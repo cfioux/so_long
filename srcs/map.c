@@ -12,8 +12,22 @@
 
 #include "../so_long.h"
 
-char	*append_char(char *line, char c, int len);
+char	*append_char(char *line, char c, int len)
+{
+	char	*tmp;
 
+	tmp = malloc(len + 2);
+	if (!tmp)
+		error("Malloc failed");
+	if (line)
+	{
+		ft_memcpy(tmp, line, len);
+		free(line);
+	}
+	tmp[len] = c;
+	tmp[len + 1] = '\0';
+	return (tmp);
+}
 
 static char	*read_line(int fd)
 {
@@ -34,23 +48,6 @@ static char	*read_line(int fd)
 	if (len == 0 && ret <= 0)
 		return (NULL);
 	return (line);
-}
-
-char	*append_char(char *line, char c, int len)
-{
-	char	*tmp;
-
-	tmp = malloc(len + 2);
-	if (!tmp)
-		error("Malloc failed");
-	if (line)
-	{
-		ft_memcpy(tmp, line, len);
-		free(line);
-	}
-	tmp[len] = c;
-	tmp[len + 1] = '\0';
-	return (tmp);
 }
 
 static int	count_lines(char *file)
@@ -76,11 +73,27 @@ static int	count_lines(char *file)
 	return (count);
 }
 
+static void	read_map_lines(t_game *g, int fd)
+{
+	int		i;
+	char	*line;
+
+	i = 0;
+	line = read_line(fd);
+	while (i < g->height && line)
+	{
+		g->map[i] = line;
+		i++;
+		line = read_line(fd);
+	}
+	g->map[i] = NULL;
+	if (i == 0)
+		error("Erreur lecture map");
+}
+
 void	load_map(t_game *g, char *file)
 {
 	int		fd;
-	int		i;
-	char	*line;
 
 	g->height = count_lines(file);
 	g->map = malloc(sizeof(char *) * (g->height + 1));
@@ -89,15 +102,7 @@ void	load_map(t_game *g, char *file)
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
 		error("Map not found");
-	i = 0;
-	while (i < g->height && (line = read_line(fd)))
-	{
-		g->map[i] = line;
-		i++;
-	}
-	g->map[i] = NULL;
+	read_map_lines(g, fd);
 	close(fd);
-	if (i == 0)
-		error("Erreur lecture map");
 	g->width = ft_strlen(g->map[0]);
 }

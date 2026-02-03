@@ -28,18 +28,23 @@ void	load_textures(t_game *g)
 			"textures/banana/banana.xpm", &g->banana.w, &g->banana.h);
 }
 
-void	render_map2(t_game *g)
+static void	render_tile(t_game *g)
 {
+	if (g->map[g->y_render][g->x_render] == '1')
+		mlx_put_image_to_window(g->mlx, g->win,
+			g->wall.img, g->x_render * TILE, g->y_render * TILE);
+	if (g->map[g->y_render][g->x_render] == 'C')
+		mlx_put_image_to_window(g->mlx, g->win,
+			g->banana.img, g->x_render * TILE, g->y_render * TILE);
+	if (g->map[g->y_render][g->x_render] == 'E')
+		mlx_put_image_to_window(g->mlx, g->win,
+			g->exit.img, g->x_render * TILE, g->y_render * TILE);
 	if (g->px == g->x_render && g->py == g->y_render)
-	{
 		mlx_put_image_to_window(g->mlx, g->win,
 			g->exitMonkey.img, g->x_render * TILE, g->y_render * TILE);
-	}
 	if (g->map[g->y_render][g->x_render] == 'P')
-	{
 		mlx_put_image_to_window(g->mlx, g->win,
 			g->player.img, g->x_render * TILE, g->y_render * TILE);
-	}
 }
 
 void	render_map(t_game *g)
@@ -52,18 +57,7 @@ void	render_map(t_game *g)
 		{
 			mlx_put_image_to_window(g->mlx, g->win,
 				g->ground.img, g->x_render * TILE, g->y_render * TILE);
-			if (g->map[g->y_render][g->x_render] == '1')
-				mlx_put_image_to_window(g->mlx, g->win,
-					g->wall.img, g->x_render * TILE, g->y_render * TILE);
-			if (g->map[g->y_render][g->x_render] == 'C')
-			{
-				mlx_put_image_to_window(g->mlx, g->win,
-					g->banana.img, g->x_render * TILE, g->y_render * TILE);
-			}
-			if (g->map[g->y_render][g->x_render] == 'E')
-				mlx_put_image_to_window(g->mlx, g->win,
-					g->exit.img, g->x_render * TILE, g->y_render * TILE);
-			render_map2(g);
+			render_tile(g);
 			g->x_render++;
 		}
 		g->y_render++;

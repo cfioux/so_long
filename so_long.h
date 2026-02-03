@@ -6,7 +6,7 @@
 /*   By: cfioux-- <cfioux--@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 09:38:07 by cfioux--          #+#    #+#             */
-/*   Updated: 2026/02/02 15:51:18 by cfioux--         ###   ########.fr       */
+/*   Updated: 2026/02/03 11:05:32 by cfioux--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,9 @@ void	error(char *msg);
 void	error_with_cleanup(t_game *g, char *msg);
 void	free_map(char **map, int height);
 int		ft_strlen(char *s);
+void	*ft_memcpy(void *dest, const void *src, size_t n);
 
-char *ft_strchr(char *s, int c);
+char	*ft_strchr(char *s, int c);
 
 void    flood_fill(t_game *g);
 

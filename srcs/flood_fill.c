@@ -6,7 +6,7 @@
 /*   By: cfioux-- <cfioux--@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 10:40:52 by cfioux--          #+#    #+#             */
-/*   Updated: 2026/02/02 13:19:24 by cfioux--         ###   ########.fr       */
+/*   Updated: 2026/02/03 11:14:54 by cfioux--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,31 @@ static void	free_copy_partial(char **copy, int lines_allocated)
 	free(copy);
 }
 
+static char	*allocate_and_copy_line(t_game *g, char **copy, int i)
+{
+	char	*line;
+	int		j;
+
+	line = malloc(g->width + 1);
+	if (!line)
+	{
+		free_copy_partial(copy, i);
+		error_with_cleanup(g, "Malloc failed");
+	}
+	j = 0;
+	while (j < g->width)
+	{
+		line[j] = g->map[i][j];
+		j++;
+	}
+	line[j] = '\0';
+	return (line);
+}
+
 static char	**copy_map(t_game *g)
 {
 	char	**copy;
 	int		i;
-	int		j;
 
 	copy = malloc(sizeof(char *) * (g->height + 1));
 	if (!copy)
@@ -37,19 +57,7 @@ static char	**copy_map(t_game *g)
 	i = 0;
 	while (i < g->height)
 	{
-		copy[i] = malloc(g->width + 1);
-		if (!copy[i])
-		{
-			free_copy_partial(copy, i);
-			error_with_cleanup(g, "Malloc failed");
-		}
-		j = 0;
-		while (j < g->width)
-		{
-			copy[i][j] = g->map[i][j];
-			j++;
-		}
-		copy[i][j] = '\0';
+		copy[i] = allocate_and_copy_line(g, copy, i);
 		i++;
 	}
 	copy[i] = NULL;
@@ -89,19 +97,6 @@ static void	check_flood(char **map, t_game *g)
 	}
 }
 
-static void	free_copy(char **map, int height)
-{
-	int	i;
-
-	i = 0;
-	while (i < height)
-	{
-		free(map[i]);
-		i++;
-	}
-	free(map);
-}
-
 void	flood_fill(t_game *g)
 {
 	char	**map_copy;
@@ -109,5 +104,5 @@ void	flood_fill(t_game *g)
 	map_copy = copy_map(g);
 	fill(map_copy, g->px, g->py);
 	check_flood(map_copy, g);
-	free_copy(map_copy, g->height);
+	free_map(map_copy, g->height);
 }
