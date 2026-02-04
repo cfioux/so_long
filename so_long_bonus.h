@@ -6,7 +6,7 @@
 /*   By: cfioux-- <cfioux--@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 09:38:07 by cfioux--          #+#    #+#             */
-/*   Updated: 2026/02/03 11:36:23 by cfioux--         ###   ########.fr       */
+/*   Updated: 2026/02/04 13:27:50 by cfioux--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ typedef struct s_game
 	int 	count_exit;
 	int		moves;
 	int		orientation;
-	long    potassium_display;
 	t_img	banana[5];
 	t_img	wall;
 	t_img	player;
@@ -80,6 +79,8 @@ void	destroy_images(t_game *g);
 char 	*ft_strchr(char *s, int c);
 
 void    flood_fill(t_game *g);
+void	init_game_basic(t_game *g);
+void	init_mlx(t_game *g);
 
 int    banana_loop(t_game *g);
 

@@ -12,20 +12,17 @@
 
 #include "../so_long_bonus.h"
 
-void	init_game(t_game *g)
+void	init_game_basic(t_game *g)
 {
-	g->mlx = mlx_init();
-	if (!g->mlx)
-		error("MLX init failed");
 	g->moves = 0;
 	g->collectibles = 0;
 	g->count_exit = 0;
 	g->count_player = 0;
 	g->orientation = 0;
-	g->potassium_display = 0;
 	g->height = 0;
 	g->map = NULL;
 	g->win = NULL;
+	g->mlx = NULL;
 	g->wall.img = NULL;
 	g->exit.img = NULL;
 	g->exitMonkey.img = NULL;
@@ -38,4 +35,14 @@ void	init_game(t_game *g)
 	g->banana[2].img = NULL;
 	g->banana[3].img = NULL;
 	g->banana[4].img = NULL;
+}
+
+void	init_mlx(t_game *g)
+{
+	g->mlx = mlx_init();
+	if (!g->mlx)
+	{
+		free_map(g->map, g->height);
+		error("MLX init failed");
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: cfioux-- <cfioux--@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 10:40:52 by cfioux--          #+#    #+#             */
-/*   Updated: 2026/02/03 11:33:13 by cfioux--         ###   ########.fr       */
+/*   Updated: 2026/02/04 13:20:26 by cfioux--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ static char	*allocate_and_copy_line(t_game *g, char **copy, int i)
 	if (!line)
 	{
 		free_copy_partial(copy, i);
-		error_with_cleanup(g, "Malloc failed");
+		free_map(g->map, g->height);
+		error("Malloc failed");
 	}
 	j = 0;
 	while (j < g->width)
@@ -40,7 +41,10 @@ static char	**copy_map(t_game *g)
 
 	copy = malloc(sizeof(char *) * (g->height + 1));
 	if (!copy)
-		error_with_cleanup(g, "Malloc failed");
+	{
+		free_map(g->map, g->height);
+		error("Malloc failed");
+	}
 	i = 0;
 	while (i < g->height)
 	{
@@ -76,7 +80,8 @@ static void	check_flood(char **map, t_game *g)
 			if (map[y][x] == 'C' || map[y][x] == 'E')
 			{
 				free_map(map, g->height);
-				error_with_cleanup(g, "Map no playable (flood fill)");
+				free_map(g->map, g->height);
+				error("Map no playabe (flood fill)");
 			}
 			x++;
 		}
