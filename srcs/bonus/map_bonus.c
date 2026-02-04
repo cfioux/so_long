@@ -58,7 +58,10 @@ static int	count_lines(char *file)
 
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
+	{
+		close(fd);
 		error("Map not found");
+	}
 	count = 0;
 	line = read_line(fd);
 	while (line)
@@ -101,7 +104,10 @@ void	load_map(t_game *g, char *file)
 		error("Malloc failed");
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
+	{
+		close(fd);
 		error("Map not found");
+	}
 	read_map_lines(g, fd);
 	close(fd);
 	g->width = ft_strlen(g->map[0]);

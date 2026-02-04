@@ -18,7 +18,11 @@ char	*append_char(char *line, char c, int len)
 
 	tmp = malloc(len + 2);
 	if (!tmp)
+	{
+		if (line)
+			free(line);
 		error("Malloc failed");
+	}
 	if (line)
 	{
 		ft_memcpy(tmp, line, len);
@@ -88,7 +92,11 @@ static void	read_map_lines(t_game *g, int fd)
 	}
 	g->map[i] = NULL;
 	if (i == 0)
+	{
+		close(fd);
+		free_map(g->map, g->height);
 		error("Erreur lecture map");
+	}
 }
 
 void	load_map(t_game *g, char *file)
@@ -101,7 +109,10 @@ void	load_map(t_game *g, char *file)
 		error("Malloc failed");
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
+	{
+		free(g->map);
 		error("Map not found");
+	}
 	read_map_lines(g, fd);
 	close(fd);
 	g->width = ft_strlen(g->map[0]);

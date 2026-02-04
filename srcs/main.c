@@ -18,12 +18,15 @@ int	main(int ac, char **av)
 
 	if (ac != 2)
 		error("Usage: ./so_long map.ber");
-	init_game(&g);
+	init_game_basic(&g);
 	load_map(&g, av[1]);
 	check_map(&g);
 	flood_fill(&g);
+	init_mlx(&g);
 	g.win = mlx_new_window(g.mlx, g.width * TILE,
 			g.height * TILE, "so_long");
+	if (!g.win)
+		error_with_cleanup(&g, "Window creation failed");
 	load_textures(&g);
 	render_map(&g);
 	mlx_key_hook(g.win, key_press, &g);

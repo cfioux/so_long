@@ -6,7 +6,7 @@
 /*   By: cfioux-- <cfioux--@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 09:38:07 by cfioux--          #+#    #+#             */
-/*   Updated: 2026/02/03 11:36:15 by cfioux--         ###   ########.fr       */
+/*   Updated: 2026/02/04 11:53:32 by cfioux--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,5 +81,7 @@ void	free_copy_partial(char **copy, int lines_allocated);
 char	*ft_strchr(char *s, int c);
 
 void    flood_fill(t_game *g);
+void	init_game_basic(t_game *g);
+void	init_mlx(t_game *g);
 
 #endif
