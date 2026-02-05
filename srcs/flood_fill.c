@@ -55,15 +55,17 @@ static char	**copy_map(t_game *g)
 	return (copy);
 }
 
-static void	fill(char **map, int x, int y)
+static void	fill(char **map, t_game *g, int x, int y)
 {
+	if (x < 0 || x >= g->width || y < 0 || y >= g->height)
+		return ;
 	if (map[y][x] == '1' || map[y][x] == 'F')
 		return ;
 	map[y][x] = 'F';
-	fill(map, x + 1, y);
-	fill(map, x - 1, y);
-	fill(map, x, y + 1);
-	fill(map, x, y - 1);
+	fill(map, g, x + 1, y);
+	fill(map, g, x - 1, y);
+	fill(map, g, x, y + 1);
+	fill(map, g, x, y - 1);
 }
 
 static void	check_flood(char **map, t_game *g)
@@ -94,7 +96,7 @@ void	flood_fill(t_game *g)
 	char	**map_copy;
 
 	map_copy = copy_map(g);
-	fill(map_copy, g->px, g->py);
+	fill(map_copy, g, g->px, g->py);
 	check_flood(map_copy, g);
 	free_map(map_copy, g->height);
 }
