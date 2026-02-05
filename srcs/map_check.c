@@ -77,25 +77,20 @@ static void	check_walls(t_game *g)
 	}
 }
 
-static void    check_rectangle(t_game *g)
+static void	check_rectangle(t_game *g)
 {
-    int    i;
+	int	i;
 
-    i = 0;
-    while (i < g->height)
-    {
-        if (!g->map[i] || g->map[i][0] == '\n')
-        {
-            free_map(g->map, g->height);
-            error("map contains empty line");
-        }
-        if ((int)ft_strlen(g->map[i]) != g->width)
-        {
-            free_map(g->map, g->height);
-            error("map is not a rectangle");
-        }
-        i++;
-    }
+	i = 0;
+	while (i < g->height)
+	{
+		if ((int)ft_strlen(g->map[i]) != g->width)
+		{
+			free_map(g->map, g->height);
+			error("map is not a rectangle");
+		}
+		i++;
+	}
 }
 
 void	check_map(t_game *g)

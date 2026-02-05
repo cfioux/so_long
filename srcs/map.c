@@ -110,7 +110,7 @@ void	load_map(t_game *g, char *file)
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
 	{
-		free(g->map);
+		close(fd);
 		error("Map not found");
 	}
 	read_map_lines(g, fd);

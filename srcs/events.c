@@ -44,7 +44,7 @@ static void	move_player(t_game *g, int dx, int dy)
 	if (g->map[g->py][g->px] != 'E')
 		g->map[g->py][g->px] = 'P';
 	g->moves++;
-	ft_printf("🆙 Movements : %d\n", g->moves);
+	ft_printf("Movements : %d\n", g->moves);
 	render_map(g);
 }
 
