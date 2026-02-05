@@ -12,45 +12,47 @@
 
 #include "../so_long.h"
 
-char	*append_char(char *line, char c, int len)
+static char	*grow_line(char *line, int size)
 {
-	char	*tmp;
+	char	*new;
 
-	tmp = malloc(len + 2);
-	if (!tmp)
-	{
-		if (line)
-			free(line);
-		error("Malloc failed");
-	}
+	new = malloc(size + 1);
+	if (!new)
+		return (NULL);
 	if (line)
 	{
-		ft_memcpy(tmp, line, len);
+		ft_memcpy(new, line, size);
 		free(line);
 	}
-	tmp[len] = c;
-	tmp[len + 1] = '\0';
-	return (tmp);
+	return (new);
 }
 
 static char	*read_line(int fd)
 {
-	char	*line;
 	char	c;
-	int		len;
+	char	*line;
+	int		i;
 	int		ret;
 
 	line = NULL;
-	len = 0;
+	i = 0;
 	ret = read(fd, &c, 1);
-	while (ret > 0 && c != '\n')
+	while (ret == 1)
 	{
-		line = append_char(line, c, len);
-		len++;
+		if (c == '\n')
+			break ;
+		line = grow_line(line, i);
+		if (!line)
+			return (NULL);
+		line[i++] = c;
 		ret = read(fd, &c, 1);
 	}
-	if (len == 0 && ret <= 0)
+	if (i == 0 && ret == 0)
+		return (free(line), NULL);
+	line = grow_line(line, i);
+	if (!line)
 		return (NULL);
+	line[i] = '\0';
 	return (line);
 }
 
