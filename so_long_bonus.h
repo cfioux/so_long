@@ -6,7 +6,7 @@
 /*   By: cfioux-- <cfioux--@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 09:38:07 by cfioux--          #+#    #+#             */
-/*   Updated: 2026/02/04 13:27:50 by cfioux--         ###   ########.fr       */
+/*   Updated: 2026/02/25 12:00:12 by cfioux--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ typedef struct s_game
 	t_img	boss;
 }	t_game;
 
+void	*ft_memcpy(void *dest, const void *src, size_t n);
+
 int		ft_printf(const char *format, ...);
 int		ft_puthex_count(unsigned long n, int upper);
 int		ft_putchar_count(char c);
@@ -73,10 +75,15 @@ void	render_map(t_game *g);
 
 int		key_press(int keycode, t_game *g);
 int		close_window(t_game *g);
-void	error(char *msg);
-int		ft_strlen(char *s);
 void	destroy_images(t_game *g);
-char 	*ft_strchr(char *s, int c);
+void	error(char *msg);
+void	error_with_cleanup(t_game *g, char *msg);
+void	free_map(char **map, int height);
+int		ft_strlen(char *s);
+
+void	free_copy_partial(char **copy, int lines_allocated);
+int		ft_strncmp(const char *s1, const char *s2, size_t n);
+char	*ft_strchr(char *s, int c);
 
 void    flood_fill(t_game *g);
 void	init_game_basic(t_game *g);
@@ -84,9 +91,6 @@ void	init_mlx(t_game *g);
 
 int    banana_loop(t_game *g);
 
-void	error_with_cleanup(t_game *g, char *msg);
-void	free_map(char **map, int height);
-void	*ft_memcpy(void *dest, const void *src, size_t n);
-void	free_copy_partial(char **copy, int lines_allocated);
+int		verify_filename(char *filename);
 
 #endif
