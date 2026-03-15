@@ -18,6 +18,7 @@ int	main(int ac, char **av)
 
 	if (ac != 2)
 		error("Usage: ./so_long map.ber");
+	verify_filename(av[1]);
 	init_game_basic(&g);
 	load_map(&g, av[1]);
 	check_map(&g);
