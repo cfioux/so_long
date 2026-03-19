@@ -16,16 +16,28 @@ void	load_textures(t_game *g)
 {
 	g->wall.img = mlx_xpm_file_to_image(g->mlx,
 			"textures/bush.xpm", &g->wall.w, &g->wall.h);
+	if (!g->wall.img)
+		error("Texture bush.xpm not found");
 	g->exit.img = mlx_xpm_file_to_image(g->mlx,
 			"textures/exit.xpm", &g->exit.w, &g->exit.h);
+	if (!g->exit.img)
+		error("Texture exit.xpm not found");
 	g->exitMonkey.img = mlx_xpm_file_to_image(g->mlx,
 			"textures/exitMonkey.xpm", &g->exitMonkey.w, &g->exitMonkey.h);
+	if (!g->exitMonkey.img)
+		error("Texture exitMonkey.xpm not found");
 	g->ground.img = mlx_xpm_file_to_image(g->mlx,
 			"textures/ground.xpm", &g->ground.w, &g->ground.h);
+	if (!g->ground.img)
+		error("Texture ground.xpm not found");
 	g->player.img = mlx_xpm_file_to_image(g->mlx,
 			"textures/monkey.xpm", &g->player.w, &g->player.h);
+	if (!g->player.img)
+		error("Texture player.xpm not found");
 	g->banana.img = mlx_xpm_file_to_image(g->mlx,
 			"textures/banana/banana.xpm", &g->banana.w, &g->banana.h);
+	if (!g->banana.img)
+		error("Texture banana.xpm not found");
 }
 
 static void	render_tile(t_game *g)
