@@ -61,12 +61,18 @@ static int	count_lines(char *file)
 	int		fd;
 	int		count;
 	char	*line;
+	int		*buff;
 
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
 		error("Map not found");
 	count = 0;
 	line = read_line(fd);
+	if (read(fd, &buff, 0) == -1)
+	{
+		close(fd);
+		error("Map not can be a directory");
+	}
 	while (line)
 	{
 		free(line);
