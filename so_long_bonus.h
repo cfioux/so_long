@@ -6,12 +6,12 @@
 /*   By: cfioux-- <cfioux--@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 09:38:07 by cfioux--          #+#    #+#             */
-/*   Updated: 2026/02/25 12:00:12 by cfioux--         ###   ########.fr       */
+/*   Updated: 2026/03/19 11:09:05 by cfioux--         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#ifndef SO_LONG_BONUS_H
+# define SO_LONG_BONUS_H
 
 # include "mlx.h"
 # include <stdlib.h>
@@ -38,12 +38,12 @@ typedef struct s_game
 	int		width;
 	int		height;
 	int		x_render;
-	int 	y_render;
+	int		y_render;
 	int		px;
 	int		py;
 	int		collectibles;
-	int 	count_player;
-	int 	count_exit;
+	int		count_player;
+	int		count_exit;
 	int		moves;
 	int		orientation;
 	t_img	banana[5];
@@ -85,12 +85,11 @@ void	free_copy_partial(char **copy, int lines_allocated);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 char	*ft_strchr(char *s, int c);
 
-void    flood_fill(t_game *g);
+void	flood_fill(t_game *g);
 void	init_game_basic(t_game *g);
 void	init_mlx(t_game *g);
 
-int    banana_loop(t_game *g);
-
+int		banana_loop(t_game *g);
 int		verify_filename(char *filename);
 
 #endif

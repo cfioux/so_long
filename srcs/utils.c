@@ -80,7 +80,7 @@ int	verify_filename(char *filename)
 	len = ft_strlen(filename);
 	if (len < 4)
 		return (0);
-	if (!ft_strncmp(filename + len - 4, ".ber",4))
+	if (!ft_strncmp(filename + len - 4, ".ber", 4))
 		return (1);
 	error("Incorrect format, PLS use .ber");
 	return (0);
