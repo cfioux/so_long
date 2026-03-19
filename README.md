@@ -1,32 +1,46 @@
-# 🐒 SO_LONG - (monkey edition)
 
-*This project is a small 2D game. Its purpose is to have you work with textures, sprites, and other basic gameplay elements.*
+*This project has been created as part of the 42 curriculum by **cfioux--**.*
 
+---
 
-## ⭐ Visualisation
+## Description
 
-![Gif Visualisation 1](assets/so_long.gif)
+"This project is a small 2D game.
+Its purpose is to have you work with textures, sprites,
+and other basic gameplay elements"
 
-## 🔥 Usage
+---
 
-#### Clone my repo :
-```bash
-git clone https://github.com/cfioux/so_long.git
+## Instructions
+
+*clone or download the minilibx*
+
 ```
-#### Clone the MiniLibx in my repo:
-```bash
 git clone https://github.com/42Paris/minilibx-linux minilibx-linux
 ```
 
-> Now, you can `make` or `make bonus`
+*make or make bonus*
 
-![Compilation message](assets/image.png)
+```
+make
+```
+```
+make bonus
+```
+* usage :
+```
+./so_long maps/<map_name>.ber
+```
+or
+```
+./so_long_bonus maps/<map_name>.ber
+```
+---
 
-## 🤸🏽 Movement
+## Ressources
 
-| Deplacement | Direction |
-|:-------- |:--------:|
-| A / ←     | Left   |
-| D / →     | Right   |
-| W / ↑     | Top   |
-| S / ↓     | Bottom   |
+* **Man minilibx**: `https://github.com/42paris/minilibx-linux/tree/master/man/man1`
+
+* **Minilibx guid**: `https://harm-smits.github.io/42docs/libs/minilibx/getting_started.html`
+
+---
