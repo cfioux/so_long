@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   flood_fill_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfioux-- <cfioux--@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gajanvie <gajanvie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 10:40:52 by cfioux--          #+#    #+#             */
-/*   Updated: 2026/02/04 13:20:26 by cfioux--         ###   ########.fr       */
+/*   Updated: 2026/03/19 15:17:51 by gajanvie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static char	*allocate_and_copy_line(t_game *g, char **copy, int i)
 	{
 		free_copy_partial(copy, i);
 		free_map(g->map, g->height);
-		error("Malloc failed");
+		error("Malloc failed", 0, NULL);
 	}
 	j = 0;
 	while (j < g->width)
@@ -43,7 +43,7 @@ static char	**copy_map(t_game *g)
 	if (!copy)
 	{
 		free_map(g->map, g->height);
-		error("Malloc failed");
+		error("Malloc failed", 0, NULL);
 	}
 	i = 0;
 	while (i < g->height)
@@ -81,7 +81,7 @@ static void	check_flood(char **map, t_game *g)
 			{
 				free_map(map, g->height);
 				free_map(g->map, g->height);
-				error("Map no playabe (flood fill)");
+				error("Map no playabe (flood fill)", 0, NULL);
 			}
 			x++;
 		}

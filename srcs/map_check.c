@@ -17,7 +17,7 @@ static void	process_char(t_game *g, int y, int x)
 	if (!ft_strchr("01CEP", g->map[y][x]))
 	{
 		free_map(g->map, g->height);
-		error("charactor invalide in the map");
+		error("charactor invalide in the map", 0, NULL);
 	}
 	if (g->map[y][x] == 'P')
 	{
@@ -60,7 +60,7 @@ static void	check_walls(t_game *g)
 			|| g->map[g->height - 1][i] != '1')
 		{
 			free_map(g->map, g->height);
-			error("map not closed by walls");
+			error("map not closed by walls", 0, NULL);
 		}
 		i++;
 	}
@@ -71,7 +71,7 @@ static void	check_walls(t_game *g)
 			|| g->map[i][g->width - 1] != '1')
 		{
 			free_map(g->map, g->height);
-			error("map not closed by walls");
+			error("map not closed by walls", 0, NULL);
 		}
 		i++;
 	}
@@ -87,7 +87,7 @@ static void	check_rectangle(t_game *g)
 		if ((int)ft_strlen(g->map[i]) != g->width)
 		{
 			free_map(g->map, g->height);
-			error("map is not a rectangle");
+			error("map is not a rectangle", 0, NULL);
 		}
 		i++;
 	}
@@ -103,16 +103,16 @@ void	check_map(t_game *g)
 	if (g->count_player != 1)
 	{
 		free_map(g->map, g->height);
-		error("no player detected");
+		error("no player detected", 0, NULL);
 	}
 	if (g->count_exit < 1)
 	{
 		free_map(g->map, g->height);
-		error("no exit detected");
+		error("no exit detected", 0, NULL);
 	}
 	if (g->collectibles < 1)
 	{
 		free_map(g->map, g->height);
-		error("no coin detected");
+		error("no coin detected", 0, NULL);
 	}
 }

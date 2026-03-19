@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: cfioux-- <cfioux--@student.42.fr>          +#+  +:+       +#+         #
+#    By: gajanvie <gajanvie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/05 09:44:33 by cfioux--          #+#    #+#              #
-#    Updated: 2026/02/02 14:20:34 by cfioux--         ###   ########.fr        #
+#    Updated: 2026/03/19 15:37:01 by gajanvie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,8 +14,10 @@ NAME = so_long
 NAME_BONUS = so_long_bonus
 
 CC = cc
+LIB = minilibx-linux
 CFLAGS = -Wall -Wextra -Werror
 MLX_DIR = minilibx-linux
+LIB_MINI = $(MLX_DIR)
 IRed = \033[0;31m
 IBlue = \033[1;94m
 White = \033[0;37m
@@ -50,11 +52,11 @@ SRCS_BONUS = srcs/bonus/error_bonus.c \
 OBJS = $(SRCS:.c=.o)
 OBJS_BONUS = $(SRCS_BONUS:.c=.o)
 
-INCLUDES = -Iincludes -I$(MLX_DIR)
+INCLUDES = -I includes -I $(MLX_DIR) -I./
 
-LIBS = -L$(MLX_DIR) -lmlx -lXext -lX11 -lm
+LIBS = -L$(MLX_DIR) -lmlx -lXext -lX11 -lm 
 
-all: $(NAME)
+all: $(LIB_MINI) $(NAME)
 
 	@echo "$(IRed)                  $(White)__                         "
 	@echo "$(IBlue)  __________$(White)     |  |   ____  $(IRed) ____    ____  "
@@ -64,7 +66,7 @@ all: $(NAME)
 	@echo "$(IBlue)/____  >____/$(White)____|____/\____/$(IRed)|___|  /\___  / "
 	@echo "$(IBlue)     \/    $(White)/_____/           $(IRed)     \//_____/  "
 
-bonus: $(NAME_BONUS)
+bonus: $(LIB_MINI) $(NAME_BONUS)
 	@echo "$(IRed)                  __                           "
 	@echo "$(IBlue)  __________$(IRed)     |  |   ____   ____    ____     $(Yellow)___.                               "
 	@echo "$(IBlue) /  ___/  _ \ $(IRed)   |  |  /  _ \ /    \  / ___\    $(Yellow)\_ |__   ____   ____  __ __  ______"
@@ -74,28 +76,32 @@ bonus: $(NAME_BONUS)
 	@echo "$(IBlue)     \/    $(White)/_____/$(IRed)                \//_____/     "
 
 $(NAME): $(OBJS)
-	@make -C $(MLX_DIR)
-	@$(CC) $(CFLAGS) $(OBJS) $(INCLUDES) $(LIBS) -o $(NAME)
+	@$(CC) $(CFLAGS) -g $(OBJS) $(INCLUDES) $(LIBS) -o $(NAME)
 	@echo "$(NAME) compiled successfully!"
 
 $(NAME_BONUS): $(OBJS_BONUS)
-	@make -C $(MLX_DIR)
-	@$(CC) $(CFLAGS) $(OBJS_BONUS) $(INCLUDES) $(LIBS) -o $(NAME_BONUS)
+	@$(CC) $(CFLAGS) -g $(OBJS_BONUS) $(INCLUDES) $(LIBS) -o $(NAME_BONUS)
 	@echo "$(NAME_BONUS) compiled successfully!"
+
+$(LIB_MINI):
+	@git clone https://github.com/42Paris/minilibx-linux --depth=1
+	@make --no-print-directory -C $(MLX_DIR) -j
+	@echo "Importation of MiniLibX finished!"
 
 %.o: %.c
 	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 	@echo "Compiling $<"
 
 clean:
-	@make -C $(MLX_DIR) clean
 	@rm -f $(OBJS) $(OBJS_BONUS)
 	@echo "Object files cleaned!"
 
 fclean: clean
+	@rm -rf $(LIB)
 	@rm -f $(NAME) $(NAME_BONUS)
 	@echo "Executables removed!"
 
 re: fclean all
+re_bonus: fclean bonus
 
 .PHONY: all bonus clean fclean re

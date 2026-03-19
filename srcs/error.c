@@ -12,14 +12,33 @@
 
 #include "../so_long.h"
 
-void	error(char *msg)
+void	destroy_images(t_game *g)
 {
-	write(2, "Error\n", 6);
+	if (g->wall.img)
+		mlx_destroy_image(g->mlx, g->wall.img);
+	if (g->exit.img)
+		mlx_destroy_image(g->mlx, g->exit.img);
+	if (g->exitmonkey.img)
+		mlx_destroy_image(g->mlx, g->exitmonkey.img);
+	if (g->ground.img)
+		mlx_destroy_image(g->mlx, g->ground.img);
+	if (g->player.img)
+		mlx_destroy_image(g->mlx, g->player.img);
+	if (g->banana.img)
+		mlx_destroy_image(g->mlx, g->banana.img);
+}
+
+void	error(char *msg, int i, t_game *g)
+{
+	if (!i)
+		write(2, "Error\n", 6);
 	if (msg)
 	{
 		write(2, msg, ft_strlen(msg));
 		write(2, "\n", 1);
 	}
+	if (i == 1)
+		error_with_cleanup(g, NULL);
 	exit(1);
 }
 
@@ -37,22 +56,6 @@ void	free_map(char **map, int height)
 		i++;
 	}
 	free(map);
-}
-
-void	destroy_images(t_game *g)
-{
-	if (g->wall.img)
-		mlx_destroy_image(g->mlx, g->wall.img);
-	if (g->exit.img)
-		mlx_destroy_image(g->mlx, g->exit.img);
-	if (g->exitMonkey.img)
-		mlx_destroy_image(g->mlx, g->exitMonkey.img);
-	if (g->ground.img)
-		mlx_destroy_image(g->mlx, g->ground.img);
-	if (g->player.img)
-		mlx_destroy_image(g->mlx, g->player.img);
-	if (g->banana.img)
-		mlx_destroy_image(g->mlx, g->banana.img);
 }
 
 void	error_with_cleanup(t_game *g, char *msg)

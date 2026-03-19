@@ -1,5 +1,5 @@
 /* XPM */
-static char * exitMonkey_xpm[] = {
+static char * exitmonkey_xpm[] = {
 "64 64 444 2",
 "  	c None",
 ". 	c #785949",

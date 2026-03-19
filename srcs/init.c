@@ -24,7 +24,7 @@ void	init_game_basic(t_game *g)
 	g->win = NULL;
 	g->wall.img = NULL;
 	g->exit.img = NULL;
-	g->exitMonkey.img = NULL;
+	g->exitmonkey.img = NULL;
 	g->ground.img = NULL;
 	g->player.img = NULL;
 	g->banana.img = NULL;
@@ -36,6 +36,6 @@ void	init_mlx(t_game *g)
 	if (!g->mlx)
 	{
 		free_map(g->map, g->height);
-		error("MLX init failed");
+		error("MLX init failed", 0, NULL);
 	}
 }

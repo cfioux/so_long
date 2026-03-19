@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfioux-- <cfioux--@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gajanvie <gajanvie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 09:38:07 by cfioux--          #+#    #+#             */
-/*   Updated: 2026/03/19 11:08:57 by cfioux--         ###   ########.fr       */
+/*   Updated: 2026/03/19 15:49:16 by gajanvie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ typedef struct s_game
 	long	potassium_display;
 	t_img	banana;
 	t_img	wall;
-	t_img	exitMonkey;
+	t_img	exitmonkey;
 	t_img	player;
 	t_img	collect;
 	t_img	exit;
@@ -71,7 +71,7 @@ void	render_map(t_game *g);
 int		key_press(int keycode, t_game *g);
 int		close_window(t_game *g);
 void	destroy_images(t_game *g);
-void	error(char *msg);
+void	error(char *msg, int i, t_game *g);
 void	error_with_cleanup(t_game *g, char *msg);
 void	free_map(char **map, int height);
 int		ft_strlen(char *s);

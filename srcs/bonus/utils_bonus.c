@@ -82,6 +82,6 @@ int	verify_filename(char *filename)
 		return (0);
 	if (!ft_strncmp(filename + len - 4, ".ber", 4))
 		return (1);
-	error("Incorrect format, PLS use .ber");
+	error("Incorrect format, PLS use .ber", 0, NULL);
 	return (0);
 }

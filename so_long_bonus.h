@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfioux-- <cfioux--@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gajanvie <gajanvie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 09:38:07 by cfioux--          #+#    #+#             */
-/*   Updated: 2026/03/19 11:09:05 by cfioux--         ###   ########.fr       */
+/*   Updated: 2026/03/19 15:49:55 by gajanvie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@ typedef struct s_game
 	t_img	player1;
 	t_img	collect;
 	t_img	exit;
-	t_img	exitMonkey;
-	t_img	exitMonkey1;
+	t_img	exitmonkey;
+	t_img	exitmonkey1;
 	t_img	ground;
 	t_img	boss;
 }	t_game;
@@ -76,7 +76,7 @@ void	render_map(t_game *g);
 int		key_press(int keycode, t_game *g);
 int		close_window(t_game *g);
 void	destroy_images(t_game *g);
-void	error(char *msg);
+void	error(char *msg, int i, t_game *g);
 void	error_with_cleanup(t_game *g, char *msg);
 void	free_map(char **map, int height);
 int		ft_strlen(char *s);
