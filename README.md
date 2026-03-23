@@ -1,5 +1,5 @@
 
-*This project has been created as part of the 42 curriculum by **cfioux--**.*
+*This project has been created as part of the 42 curriculum by cfioux--.*
 
 ---
 
@@ -12,12 +12,6 @@ and other basic gameplay elements"
 ---
 
 ## Instructions
-
-*clone or download the minilibx*
-
-```
-git clone https://github.com/42Paris/minilibx-linux minilibx-linux
-```
 
 *make or make bonus*
 
