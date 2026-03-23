@@ -6,7 +6,7 @@
 #    By: cfioux-- <cfioux--@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/05 09:44:33 by cfioux--          #+#    #+#              #
-#    Updated: 2026/03/20 21:31:11 by cfioux--         ###   ########.fr        #
+#    Updated: 2026/03/23 13:16:21 by cfioux--         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,8 +16,7 @@ NAME_BONUS = so_long_bonus
 CC = cc
 LIB = minilibx-linux
 CFLAGS = -Wall -Wextra -Werror
-MLX_DIR = minilibx-linux
-LIB_MINI = $(MLX_DIR)
+MLX = minilibx-linux
 IRed = \033[0;31m
 IBlue = \033[1;94m
 White = \033[0;37m
@@ -47,16 +46,16 @@ SRCS_BONUS = srcs/bonus/error_bonus.c \
 		srcs/bonus/utils_bonus.c \
 		srcs/ft_printf/ft_printf.c \
 		srcs/ft_printf/ft_printf_utils.c \
-		srcs/ft_printf/ft_puthex_count.c
+		srcs/ft_printf/ft_puthex_count.c 
 
 OBJS = $(SRCS:.c=.o)
 OBJS_BONUS = $(SRCS_BONUS:.c=.o)
 
-INCLUDES = -I includes -I $(MLX_DIR) -I./
+INCLUDES = -I includes -I $(MLX) -I./
 
-LIBS = -L$(MLX_DIR) -lmlx -lXext -lX11 -lm 
+LIBS = -L$(MLX) -lmlx -lXext -lX11 -lm 
 
-all: $(LIB_MINI) $(NAME)
+all: $(MLX) $(NAME)
 
 	@echo "$(IRed)                  $(White)__                         "
 	@echo "$(IBlue)  __________$(White)     |  |   ____  $(IRed) ____    ____  "
@@ -66,7 +65,7 @@ all: $(LIB_MINI) $(NAME)
 	@echo "$(IBlue)/____  >____/$(White)____|____/\____/$(IRed)|___|  /\___  / "
 	@echo "$(IBlue)     \/    $(White)/_____/           $(IRed)     \//_____/  "
 
-bonus: $(LIB_MINI) $(NAME_BONUS)
+bonus: $(MLX) $(NAME_BONUS)
 	@echo "$(IRed)                  __                           "
 	@echo "$(IBlue)  __________$(IRed)     |  |   ____   ____    ____     $(Yellow)___.                               "
 	@echo "$(IBlue) /  ___/  _ \ $(IRed)   |  |  /  _ \ /    \  / ___\    $(Yellow)\_ |__   ____   ____  __ __  ______"
@@ -83,9 +82,9 @@ $(NAME_BONUS): $(OBJS_BONUS)
 	@$(CC) $(CFLAGS) -g $(OBJS_BONUS) $(INCLUDES) $(LIBS) -o $(NAME_BONUS)
 	@echo "$(NAME_BONUS) compiled successfully!"
 
-$(LIB_MINI):
+$(MLX):
 	@git clone https://github.com/42Paris/minilibx-linux --depth=1
-	@make --no-print-directory -C $(MLX_DIR) -j
+	@make --no-print-directory -C $(MLX) -j
 	@echo "Importation of MiniLibX finished!"
 
 %.o: %.c
