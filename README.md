@@ -31,7 +31,7 @@ or
 ```
 ---
 
-## Ressources
+## Resources
 
 * **Man minilibx**: `https://github.com/42paris/minilibx-linux/tree/master/man/man1`
 

@@ -17,7 +17,7 @@ static void	process_char(t_game *g, int y, int x)
 	if (!ft_strchr("01CEP", g->map[y][x]))
 	{
 		free_map(g->map, g->height);
-		error("charactor invalide in the map", 0, NULL);
+		error("character invalide in the map", 0, NULL);
 	}
 	if (g->map[y][x] == 'P')
 	{

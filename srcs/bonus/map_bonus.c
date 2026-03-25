@@ -81,7 +81,7 @@ static int	count_lines(char *file)
 	}
 	close(fd);
 	if (count == 0)
-		error("Map vide", 0, NULL);
+		error("Map empty", 0, NULL);
 	return (count);
 }
 
