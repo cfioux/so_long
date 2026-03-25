@@ -1,31 +1,45 @@
 
+# SO_LONG 🐒
+
 *This project has been created as part of the 42 curriculum by cfioux--.*
 
----
 
-## Description
+## 🔥​ Descriptions
 
-"This project is a small 2D game.
-Its purpose is to have you work with textures, sprites,
-and other basic gameplay elements"
+![GIF game](assets/so_long.gif)
 
 ---
 
-## Instructions
+### 👣 ​Moovements
 
-*make or make bonus*
+| Touch | Movements |
+| ------ | ------ |
+| **a / ⬅️**​ | *Left* |
+| **w / ⬆️​** | *Top* |
+| **d / ➡️​** | *Right* |
+| **s / ​⬇️​** | *Bot* |
+|||
+
+## 📍​ Instructions
+
+**clone my repo** :
+```
+git clone git@github.com:cfioux/so_long.git
+```
+
+**USAGE :**
 
 ```
 make
 ```
 ```
-make bonus
-```
-* usage :
-```
 ./so_long maps/<map_name>.ber
 ```
-or
+**or** (for animations)
+```
+make bonus
+```
+
 ```
 ./so_long_bonus maps/<map_name>.ber
 ```
